@@ -70,24 +70,46 @@ fun update(userRequest: UserRequest, userId: Long) {
 }
 
 fun delete(id: Long) {
-
-    listOfUser.forEach {
-        if (it.id == id) {
-            val result = listOfUser.remove(it)
-            if (result) println("${it.firstName} with ID: ${it.id} Removed Sucessfully")
+    var listIterator = listOfUser.iterator()
+    while (listIterator.hasNext()){
+        val userObjectId = listIterator.next().id
+        if(userObjectId == id){
+            listIterator.remove()
         }
     }
 
+
+
+//for (i in listOfUser){
+//    if (i.id == id) {
+//        val result = listOfUser.remove(i)
+//        if (result) println("${i.firstName} with ID: ${i.id} Removed Sucessfully")
+//    }
+//    }
 }
 
 fun main() {
-    var Fariz = UserRequest(
+    var fariz = UserRequest(
         firstName = "Fariz", lastName = "Umar", age = 25, gender = "Male", addressRequest = listOf(
             AddressRequest(streetNameRequest = "north Street", cityRequest = "Tuticorin"),
             AddressRequest(streetNameRequest = "South Street", cityRequest = "Chennai")
+
         )
     )
-    create(Fariz)
+    create(fariz)
+    var nasrin = UserRequest(
+        firstName = "Nasreen", lastName = "Banu", age = 25, gender = "Male", addressRequest = listOf(
+            AddressRequest(streetNameRequest = "north Street", cityRequest = "Tuticorin"),
+            AddressRequest(streetNameRequest = "South Street", cityRequest = "Chennai")))
+    create(nasrin)
+    var theGreatCelina = UserRequest(
+        firstName = "Celina", lastName = "The Great", age = 25, gender = "Male", addressRequest = listOf(
+            AddressRequest(streetNameRequest = "north Street", cityRequest = "Tuticorin"),
+            AddressRequest(streetNameRequest = "South Street", cityRequest = "Chennai")))
+    create(theGreatCelina)
+
+
+
     var lokesh = UserRequest(
         firstName = "Lokesh", lastName = "Reddy", age = 24, gender = "Male", addressRequest = listOf(
             AddressRequest(streetNameRequest = "north Street", cityRequest = "Tuticorin"),
@@ -109,7 +131,7 @@ fun main() {
     update(updateLokesh, 2)
     getAll()
     println("-------DELETE USER--------")
-    delete(5)
+    delete(1)
     getAll()
 
 
